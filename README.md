@@ -34,7 +34,7 @@ FEC-Campaign-Analysis-Pipeline/
 │   │   ├── mysql_ingestion.py
 │   │   └── save_data.py
 
-│   ├── processing/                        # Cleaned-up processing modules
+│   ├── processing/                        # Processing modules
 │   │   ├── cleaning/
 │   │   │   ├── base_clean.py
 │   │   │   ├── allcand_clean.py
@@ -133,3 +133,4 @@ FEC-Campaign-Analysis-Pipeline/
 1. **Install dependencies**  
    ```bash
    pip install -r requirements.txt
+2. **Run pipeline_run.py**  
