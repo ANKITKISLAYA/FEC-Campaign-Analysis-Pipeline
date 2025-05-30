@@ -1,0 +1,20 @@
+env: dataproc
+gcs_bucket: 'dataproc-staging-us-central1-784600309852-sdhxiysx'
+raw_data_path: 'gs://dataproc-staging-us-central1-784600309852-sdhxiysx/notebooks/jupyter/FEC Project/data/raw/2019-2020/'
+parquet_data_path: 'gs://dataproc-staging-us-central1-784600309852-sdhxiysx/notebooks/jupyter/FEC Project/data/raw_parquet /2019-2020/'
+processed_data_path: 'gs://dataproc-staging-us-central1-784600309852-sdhxiysx/notebooks/jupyter/FEC Project/data/processed/2019-2020'
+aggregated_data_path: 'gs://dataproc-staging-us-central1-784600309852-sdhxiysx/notebooks/jupyter/FEC Project/data/aggregated/2019-2020'
+spark:
+  default_app_name: fecPipeline
+  shuffle_partitions: 80 
+  dynamic_allocation: true
+  driver_memory: '4g'
+  executor_memory: '5g'
+  executor_cores: 2
+mysql_config:
+  user: FECdb_skydiffer
+  password: 59516476a3c6b819f20091965dbb0d608624eb56
+  host: i2ejh.h.filess.io
+  port: 61001
+  database: FECdb_skydiffer
+  driver: pymysql
