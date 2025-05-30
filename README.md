@@ -6,7 +6,7 @@ A modular, Spark-based data engineering pipeline to analyze campaign finance dat
 
 ## Project Structure
 
-
+```
 FEC-Campaign-Analysis-Pipeline/
 ├── config/
 │   └── pipeline_config.yaml               # Main configuration file
@@ -101,7 +101,7 @@ FEC-Campaign-Analysis-Pipeline/
 
 └── README.md                              # Documentation on setup and usage
 
-
+```
 
 ---
 
@@ -120,11 +120,11 @@ FEC-Campaign-Analysis-Pipeline/
 
 | Stage            | Description |
 |------------------|-------------|
-| 🔽 Ingestion      | Ingests raw datasets from GCS & MySQL |
-| 🧹 Processing     | Cleans, typecasts, engineers features |
-| 📊 Aggregation    | Aggregates donor & spending patterns |
-| 📈 Visualization  | Creates insightful financial plots |
-| 🧩 Integration    | Controlled by `pipeline_run.py` |
+| Ingestion      | Ingests raw datasets from GCS & MySQL |
+| Processing     | Cleans, typecasts, engineers features |
+| Aggregation    | Aggregates donor & spending patterns |
+| Visualization  | Creates insightful financial plots |
+| Integration    | Controlled by `pipeline_run.py` |
 
 ---
 
