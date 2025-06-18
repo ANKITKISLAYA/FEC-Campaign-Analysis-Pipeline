@@ -10,14 +10,14 @@ from src.ingestion_exploration.mysql_ingestion import read_table_to_df
 logger = setup_logger("ingestion_run", "logs/ingestion.log")
 
 
-def AllCand_df_pipeline(spark, raw_dir_path, parq_dir_path):
+def AllCand_df_pipeline(spark, raw_extracted_path, bronze_path):
     """
     Pipeline function to process All Candidates data.
 
     """
     try:
         # Read Data
-        AllCand_path = raw_dir_path + "All candidates/weball20.txt"
+        AllCand_path = raw_extracted_path + "All candidates/weball20.txt"
         AllCand_columns = [
             "CAND_ID",
             "CAND_NAME",
@@ -56,10 +56,10 @@ def AllCand_df_pipeline(spark, raw_dir_path, parq_dir_path):
         )
 
         # Save Data
-        save_to_parquet(AllCand_df, parq_dir_path, "AllCand_df")
+        save_to_parquet(AllCand_df, bronze_path, "AllCand_df")
 
         # Read Data from Parquet
-        AllCand_df = spark.read.parquet(parq_dir_path + "AllCand_df")
+        AllCand_df = spark.read.parquet(bronze_path + "AllCand_df")
         # Check Data Shape
         check_data_shape(AllCand_df, 30, 3980)
         logger.info("AllCand_df pipeline completed successfully.")
@@ -69,17 +69,17 @@ def AllCand_df_pipeline(spark, raw_dir_path, parq_dir_path):
         raise
 
 
-def TranOneComToAno_df_pipeline(spark, raw_dir_path, parq_dir_path):
+def TranOneComToAno_df_pipeline(spark, raw_extracted_path, bronze_path):
     """
     Pipeline function to process Transactions from One Committee to Another data.
     """
     try:
         # Read Data
         TranOneComToAno_data = (
-            raw_dir_path + "Any transaction from one committee to another/itoth.txt"
+            raw_extracted_path + "Any transaction from one committee to another/itoth.txt"
         )
         TranOneComToAno_header = (
-            raw_dir_path
+            raw_extracted_path
             + "Any transaction from one committee to another/oth_header_file.csv"
         )
 
@@ -88,10 +88,10 @@ def TranOneComToAno_df_pipeline(spark, raw_dir_path, parq_dir_path):
         )
 
         # Save Data
-        save_to_parquet(TranOneComToAno_df, parq_dir_path, "TranOneComToAno_df")
+        save_to_parquet(TranOneComToAno_df, bronze_path, "TranOneComToAno_df")
 
         # Read Data from Parquet
-        TranOneComToAno_df = spark.read.parquet(parq_dir_path + "TranOneComToAno_df")
+        TranOneComToAno_df = spark.read.parquet(bronze_path + "TranOneComToAno_df")
 
         # Check Data Shape
         check_data_shape(TranOneComToAno_df, 21, 7401653)
@@ -101,15 +101,15 @@ def TranOneComToAno_df_pipeline(spark, raw_dir_path, parq_dir_path):
         raise
 
 
-def CanComLink_df_pipeline(spark, raw_dir_path, parq_dir_path):
+def CanComLink_df_pipeline(spark, raw_extracted_path, bronze_path):
     """
     Pipeline function to process Candidate Committee Link data.
     """
     try:
         # Read Data
-        CanComLink_data = raw_dir_path + "Candidate-committee linkages/ccl.txt"
+        CanComLink_data = raw_extracted_path + "Candidate-committee linkages/ccl.txt"
         CanComLink_header = (
-            raw_dir_path + "Candidate-committee linkages/ccl_header_file.csv"
+            raw_extracted_path + "Candidate-committee linkages/ccl_header_file.csv"
         )
 
         CanComLink_df = read_data(
@@ -117,10 +117,10 @@ def CanComLink_df_pipeline(spark, raw_dir_path, parq_dir_path):
         )
 
         # Save Data
-        save_to_parquet(CanComLink_df, parq_dir_path, "CanComLink_df")
+        save_to_parquet(CanComLink_df, bronze_path, "CanComLink_df")
 
         # Read Data from Parquet
-        CanComLink_df = spark.read.parquet(parq_dir_path + "CanComLink_df")
+        CanComLink_df = spark.read.parquet(bronze_path + "CanComLink_df")
 
         # Check Data Shape
         check_data_shape(CanComLink_df, 7, 7055)
@@ -130,15 +130,15 @@ def CanComLink_df_pipeline(spark, raw_dir_path, parq_dir_path):
         raise
 
 
-def ConByInd_df_pipeline(spark, raw_dir_path, parq_dir_path):
+def ConByInd_df_pipeline(spark, raw_extracted_path, bronze_path):
     """
     Pipeline function to process Contributions by Individuals data.
     """
     try:
         # Read Data
-        ConByInd_data = raw_dir_path + "Contributions by individuals/itcont.txt"
+        ConByInd_data = raw_extracted_path + "Contributions by individuals/itcont.txt"
         ConByInd_header = (
-            raw_dir_path + "Contributions by individuals/indiv_header_file.csv"
+            raw_extracted_path + "Contributions by individuals/indiv_header_file.csv"
         )
 
         ConByInd_df = read_data(
@@ -146,10 +146,10 @@ def ConByInd_df_pipeline(spark, raw_dir_path, parq_dir_path):
         )
 
         # Save Data
-        save_to_parquet(ConByInd_df, parq_dir_path, "ConByInd_df")
+        save_to_parquet(ConByInd_df, bronze_path, "ConByInd_df")
 
         # Read Data from Parquet
-        ConByInd_df = spark.read.parquet(parq_dir_path + "ConByInd_df")
+        ConByInd_df = spark.read.parquet(bronze_path + "ConByInd_df")
 
         # Check Data Shape
         check_data_shape(ConByInd_df, 21, 69377425)
@@ -159,18 +159,18 @@ def ConByInd_df_pipeline(spark, raw_dir_path, parq_dir_path):
         raise
 
 
-def ConFromComToCanIndExpen_df_pipeline(spark, raw_dir_path, parq_dir_path):
+def ConFromComToCanIndExpen_df_pipeline(spark, raw_extracted_path, bronze_path):
     """
     Pipeline function to process Contributions from Committees to Candidates and Independent Expenditures data.
     """
     try:
         # Read Data
         ConFromComToCanIndExpen_data = (
-            raw_dir_path
+            raw_extracted_path
             + "Contributions from committees to candidates & independent expenditure/itpas2.txt"
         )
         ConFromComToCanIndExpen_header = (
-            raw_dir_path
+            raw_extracted_path
             + "Contributions from committees to candidates & independent expenditure/pas2_header_file.csv"
         )
 
@@ -182,12 +182,12 @@ def ConFromComToCanIndExpen_df_pipeline(spark, raw_dir_path, parq_dir_path):
 
         # Save Data
         save_to_parquet(
-            ConFromComToCanIndExpen_df, parq_dir_path, "ConFromComToCanIndExpen_df"
+            ConFromComToCanIndExpen_df, bronze_path, "ConFromComToCanIndExpen_df"
         )
 
         # Read Data from Parquet
         ConFromComToCanIndExpen_df = spark.read.parquet(
-            parq_dir_path + "ConFromComToCanIndExpen_df"
+            bronze_path + "ConFromComToCanIndExpen_df"
         )
 
         # Check Data Shape
@@ -198,13 +198,13 @@ def ConFromComToCanIndExpen_df_pipeline(spark, raw_dir_path, parq_dir_path):
         raise
 
 
-def HouSenCurCam_df_pipeline(spark, raw_dir_path, parq_dir_path):
+def HouSenCurCam_df_pipeline(spark, raw_extracted_path, bronze_path):
     """
     Pipeline function to process House and Senate Current Campaign data.
     """
     try:
         # Read Data
-        HouSenCurCam_data = raw_dir_path + "House Senate current campaigns/webl20.txt"
+        HouSenCurCam_data = raw_extracted_path + "House Senate current campaigns/webl20.txt"
         HouSenCurCam_columns = [
             "CAND_ID",
             "CAND_NAME",
@@ -243,10 +243,10 @@ def HouSenCurCam_df_pipeline(spark, raw_dir_path, parq_dir_path):
         )
 
         # Save Data
-        save_to_parquet(HouSenCurCam_df, parq_dir_path, "HouSenCurCam_df")
+        save_to_parquet(HouSenCurCam_df, bronze_path, "HouSenCurCam_df")
 
         # Read Data from Parquet
-        HouSenCurCam_df = spark.read.parquet(parq_dir_path + "HouSenCurCam_df")
+        HouSenCurCam_df = spark.read.parquet(bronze_path + "HouSenCurCam_df")
 
         # Check Data Shape
         check_data_shape(HouSenCurCam_df, 30, 2638)
@@ -256,13 +256,13 @@ def HouSenCurCam_df_pipeline(spark, raw_dir_path, parq_dir_path):
         raise
 
 
-def OpEx_df_pipeline(spark, raw_dir_path, parq_dir_path):
+def OpEx_df_pipeline(spark, raw_extracted_path, bronze_path):
     """
     Pipeline function to process Operating Expenditures data.
     """
     try:
         # Read Data
-        OpEx_data = raw_dir_path + "Operating expenditures/oppexp.txt"
+        OpEx_data = raw_extracted_path + "Operating expenditures/oppexp.txt"
 
         OpEx_columns = [
             "CMTE_ID",
@@ -296,10 +296,10 @@ def OpEx_df_pipeline(spark, raw_dir_path, parq_dir_path):
         OpEx_df = read_data(spark=spark, file_path=OpEx_data, columns=OpEx_columns)
 
         # Save Data
-        save_to_parquet(OpEx_df, parq_dir_path, "OpEx_df")
+        save_to_parquet(OpEx_df, bronze_path, "OpEx_df")
 
         # Read Data from Parquet
-        OpEx_df = spark.read.parquet(parq_dir_path + "OpEx_df")
+        OpEx_df = spark.read.parquet(bronze_path + "OpEx_df")
 
         # Check Data Shape
         check_data_shape(OpEx_df, 26, 2310524)
@@ -309,14 +309,14 @@ def OpEx_df_pipeline(spark, raw_dir_path, parq_dir_path):
         raise
 
 
-def PacSum_df_pipeline(spark, raw_dir_path, parq_dir_path):
+def PacSum_df_pipeline(spark, raw_extracted_path, bronze_path):
     """
     Pipeline function to process PAC Summary data.
     """
     try:
         # Read Data
 
-        PacSum_data = raw_dir_path + "PAC summary/webk20.txt"
+        PacSum_data = raw_extracted_path + "PAC summary/webk20.txt"
 
         PacSum_columns = [
             "CMTE_ID",
@@ -357,16 +357,16 @@ def PacSum_df_pipeline(spark, raw_dir_path, parq_dir_path):
         raise
 
     # Save Data
-    save_to_parquet(PacSum_df, parq_dir_path, "PacSum_df")
+    save_to_parquet(PacSum_df, bronze_path, "PacSum_df")
 
     # Read Data from Parquet
-    PacSum_df = spark.read.parquet(parq_dir_path + "PacSum_df")
+    PacSum_df = spark.read.parquet(bronze_path + "PacSum_df")
 
     # Check Data Shape
     check_data_shape(PacSum_df, 27, 11539)
 
 
-def CandMast_df_pipeline(spark, config_yml, parq_dir_path):
+def CandMast_df_pipeline(spark, config_yml, bronze_path):
     """
     Pipeline function to process Candidate Master data.
     """
@@ -378,10 +378,10 @@ def CandMast_df_pipeline(spark, config_yml, parq_dir_path):
         CandMast_df = spark.createDataFrame(df_Candidate_master)
 
         # Save Data
-        save_to_parquet(CandMast_df, parq_dir_path, "CandMast_df")
+        save_to_parquet(CandMast_df, bronze_path, "CandMast_df")
 
         # Read Data from parquet
-        CandMast_df = spark.read.parquet(parq_dir_path + "CandMast_df")
+        CandMast_df = spark.read.parquet(bronze_path + "CandMast_df")
 
         # Check Data Shape
         check_data_shape(CandMast_df, 15, 7758)
@@ -391,7 +391,7 @@ def CandMast_df_pipeline(spark, config_yml, parq_dir_path):
         raise
 
 
-def CommMast_df_pipeline(spark, config_yml, parq_dir_path):
+def CommMast_df_pipeline(spark, config_yml, bronze_path):
     """
     Pipeline function to process Committee Master data.
     """
@@ -403,10 +403,10 @@ def CommMast_df_pipeline(spark, config_yml, parq_dir_path):
         CommMast_df = spark.createDataFrame(df_Committee_master)
 
         # Save Data
-        save_to_parquet(CommMast_df, parq_dir_path, "CommMast_df")
+        save_to_parquet(CommMast_df, bronze_path, "CommMast_df")
 
         # Read Data from parquet
-        CommMast_df = spark.read.parquet(parq_dir_path + "CommMast_df")
+        CommMast_df = spark.read.parquet(bronze_path + "CommMast_df")
 
         # Check Data Shape
         check_data_shape(CommMast_df, 15, 18286)
@@ -427,21 +427,21 @@ def run_ingestion_pipeline():
         spark = spark_session(config_yml, app_name="DataIngestionExploration")
 
         # Setting raw data directory path
-        raw_dir_path = config_yml["raw_data_path"]
+        raw_extracted_path = config_yml["raw_extracted_path"]
         # Setting write data directory path
-        parq_dir_path = config_yml["parquet_data_path"]
+        bronze_path = config_yml["bronze_path"]
 
         # Run individual data pipelines
-        AllCand_df_pipeline(spark, raw_dir_path, parq_dir_path)
-        TranOneComToAno_df_pipeline(spark, raw_dir_path, parq_dir_path)
-        CanComLink_df_pipeline(spark, raw_dir_path, parq_dir_path)
-        ConByInd_df_pipeline(spark, raw_dir_path, parq_dir_path)
-        ConFromComToCanIndExpen_df_pipeline(spark, raw_dir_path, parq_dir_path)
-        HouSenCurCam_df_pipeline(spark, raw_dir_path, parq_dir_path)
-        OpEx_df_pipeline(spark, raw_dir_path, parq_dir_path)
-        PacSum_df_pipeline(spark, raw_dir_path, parq_dir_path)
-        CandMast_df_pipeline(spark, config_yml, parq_dir_path)
-        CommMast_df_pipeline(spark, config_yml, parq_dir_path)
+        AllCand_df_pipeline(spark, raw_extracted_path, bronze_path)
+        TranOneComToAno_df_pipeline(spark, raw_extracted_path, bronze_path)
+        CanComLink_df_pipeline(spark, raw_extracted_path, bronze_path)
+        ConByInd_df_pipeline(spark, raw_extracted_path, bronze_path)
+        ConFromComToCanIndExpen_df_pipeline(spark, raw_extracted_path, bronze_path)
+        HouSenCurCam_df_pipeline(spark, raw_extracted_path, bronze_path)
+        OpEx_df_pipeline(spark, raw_extracted_path, bronze_path)
+        PacSum_df_pipeline(spark, raw_extracted_path, bronze_path)
+        CandMast_df_pipeline(spark, config_yml, bronze_path)
+        CommMast_df_pipeline(spark, config_yml, bronze_path)
 
         logger.info("Ingestion pipeline completed successfully.")
 

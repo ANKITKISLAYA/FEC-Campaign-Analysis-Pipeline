@@ -109,13 +109,13 @@ def run_aggregation_pipeline():
         config_yml = load_config("config/pipeline_config.yaml")
         spark = spark_session(config_yml, app_name="DataIntegrationAndAggregation")
 
-        # Setting processed data directory path
-        parq_dir_path = config_yml["parquet_data_path"]
-        # Setting aggregated data directory path
-        aggregated_data_path = config_yml["aggregated_data_path"]
+        # Setting silver data directory path
+        silver_path = config_yml["silver_path"]
+        # Setting gold data directory path
+        gold_path = config_yml["gold_path"]
 
-        # Path to file stored in processed layer
-        base_dir_path = parq_dir_path
+        # Path to file stored in silver layer
+        base_dir_path = silver_path
 
         # Read Data from parquet
 
@@ -146,13 +146,11 @@ def run_aggregation_pipeline():
         TopDonors_df, DonDist_df = donor_analysis(ConByInd_df)
 
         # Write aggregated data to Parquet
-        write_df_to_parquet(
-            TotalIndivConPerCan_df, "TotalIndivConPerCan_df", aggregated_data_path
-        )
-        write_df_to_parquet(AggDonByState_df, "AggDonByState_df", aggregated_data_path)
-        write_df_to_parquet(TotExpPerMon_df, "TotExpPerMon_df", aggregated_data_path)
-        write_df_to_parquet(TopDonors_df, "TopDonors_df", aggregated_data_path)
-        write_df_to_parquet(DonDist_df, "DonDist_df", aggregated_data_path)
+        write_df_to_parquet(TotalIndivConPerCan_df, "TotalIndivConPerCan_df", gold_path)
+        write_df_to_parquet(AggDonByState_df, "AggDonByState_df", gold_path)
+        write_df_to_parquet(TotExpPerMon_df, "TotExpPerMon_df", gold_path)
+        write_df_to_parquet(TopDonors_df, "TopDonors_df", gold_path)
+        write_df_to_parquet(DonDist_df, "DonDist_df", gold_path)
         logger.info("Aggregation pipeline completed successfully.")
     except Exception as e:
         logger.error(f"Error in run_aggregation_pipeline: {e}")

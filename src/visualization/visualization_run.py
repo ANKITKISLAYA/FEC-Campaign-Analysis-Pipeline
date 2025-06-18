@@ -33,8 +33,8 @@ def run_visualization():
         spark = spark_session(config_yml, app_name="DataVisualization")
 
         # Setting aggregated data directory path
-        aggregated_data_path = config_yml["aggregated_data_path"]
-        base_dir_path = aggregated_data_path
+        gold_path = config_yml["gold_path"]
+        base_dir_path = gold_path
 
         # Read Data from parquet
 

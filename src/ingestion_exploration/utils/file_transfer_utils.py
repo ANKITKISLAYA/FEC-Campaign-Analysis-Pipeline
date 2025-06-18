@@ -8,7 +8,7 @@ def output_path(input_path):
     """
     Converts an input path from the 'ingested' directory to the 'raw' directory.
     """
-    return input_path.replace("/ingested/", "/raw/")
+    return input_path.replace("/raw_zip/", "/raw_extracted/")
 
 
 def unzip_file(file_path, target_path, fs):
@@ -61,5 +61,5 @@ def copy_to_raw(ingested_parent_path):
 
 
 if __name__ == "__main__":
-    gcs_path = "gs://dataproc-staging-us-central1-784600309852-sdhxiysx/notebooks/jupyter/FEC Project/data/ingested/2019-2020/"
+    gcs_path = "gs://dataproc-staging-us-central1-40371648517-ndvgfbwp/notebooks/jupyter/FEC-Campaign-Analysis/FEC-Data/raw_zip"
     copy_to_raw(gcs_path)

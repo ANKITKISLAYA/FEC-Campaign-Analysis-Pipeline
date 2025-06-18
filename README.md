@@ -133,4 +133,4 @@ FEC-Campaign-Analysis-Pipeline/
 1. **Install dependencies**  
    ```bash
    pip install -r requirements.txt
-2. **Run pipeline_run.py**  
+2. **Run src\pipeline_run.py**  

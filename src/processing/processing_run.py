@@ -45,7 +45,7 @@ from src.utils.logger import setup_logger
 logger = setup_logger("processing_run", "logs/processing.log")
 
 
-def AllCand_df_processing(AllCand_df, processed_data_path):
+def AllCand_df_processing(AllCand_df, silver_path):
     try:
         # Clean data
         AllCand_df = base_clean(AllCand_df)
@@ -65,8 +65,8 @@ def AllCand_df_processing(AllCand_df, processed_data_path):
         AllCand_geoAgg_df = allcand_features.geo_AllCand_df(AllCand_df)
 
         # Save Data in processed Layer
-        write_df_to_parquet(AllCand_df, "AllCand_df", processed_data_path)
-        write_df_to_parquet(AllCand_geoAgg_df, "AllCand_geoAgg_df", processed_data_path)
+        write_df_to_parquet(AllCand_df, "AllCand_df", silver_path)
+        write_df_to_parquet(AllCand_geoAgg_df, "AllCand_geoAgg_df", silver_path)
 
         # Uncache after writing to free memory
         AllCand_df.unpersist()
@@ -80,7 +80,7 @@ def AllCand_df_processing(AllCand_df, processed_data_path):
         raise
 
 
-def TranOneComToAno_df_processing(TranOneComToAno_df, processed_data_path):
+def TranOneComToAno_df_processing(TranOneComToAno_df, silver_path):
     try:
         # Clean data
         TranOneComToAno_df = base_clean(TranOneComToAno_df)
@@ -100,7 +100,7 @@ def TranOneComToAno_df_processing(TranOneComToAno_df, processed_data_path):
 
         # Save Data in processed Layer
         write_df_to_parquet(
-            TranOneComToAno_df, "TranOneComToAno_df", processed_data_path
+            TranOneComToAno_df, "TranOneComToAno_df", silver_path
         )
 
         logger.info("TranOneComToAno_df processing completed successfully.")
@@ -113,7 +113,7 @@ def TranOneComToAno_df_processing(TranOneComToAno_df, processed_data_path):
         raise
 
 
-def CanComLink_df_processing(CanComLink_df, processed_data_path):
+def CanComLink_df_processing(CanComLink_df, silver_path):
 
     try:
         # Clean data
@@ -127,7 +127,7 @@ def CanComLink_df_processing(CanComLink_df, processed_data_path):
         CanComLink_df = cancomlink_features.features_CanComLink_df(CanComLink_df)
 
         # Save Data in processed Layer
-        write_df_to_parquet(CanComLink_df, "CanComLink_df", processed_data_path)
+        write_df_to_parquet(CanComLink_df, "CanComLink_df", silver_path)
 
         logger.info("CanComLink_df processing completed successfully.")
 
@@ -138,7 +138,7 @@ def CanComLink_df_processing(CanComLink_df, processed_data_path):
         raise
 
 
-def ConByInd_df_processing(ConByInd_df, processed_data_path):
+def ConByInd_df_processing(ConByInd_df, silver_path):
     try:
         # Clean data
         ConByInd_df = base_clean(ConByInd_df)
@@ -151,7 +151,7 @@ def ConByInd_df_processing(ConByInd_df, processed_data_path):
         ConByInd_df = conbyind_features.features_ConByInd_df(ConByInd_df)
 
         # Save Data in processed Layer
-        write_df_to_parquet(ConByInd_df, "ConByInd_df", processed_data_path)
+        write_df_to_parquet(ConByInd_df, "ConByInd_df", silver_path)
 
         logger.info("ConByInd_df processing completed successfully.")
 
@@ -163,7 +163,7 @@ def ConByInd_df_processing(ConByInd_df, processed_data_path):
 
 
 def ConFromComToCanIndExpen_df_processing(
-    ConFromComToCanIndExpen_df, processed_data_path
+    ConFromComToCanIndExpen_df, silver_path
 ):
     try:
         # Clean data
@@ -193,7 +193,7 @@ def ConFromComToCanIndExpen_df_processing(
         write_df_to_parquet(
             ConFromComToCanIndExpen_df,
             "ConFromComToCanIndExpen_df",
-            processed_data_path,
+            silver_path,
         )
 
         logger.info("ConFromComToCanIndExpen_df processing completed successfully.")
@@ -206,7 +206,7 @@ def ConFromComToCanIndExpen_df_processing(
         raise
 
 
-def HouSenCurCam_df_processing(HouSenCurCam_df, processed_data_path):
+def HouSenCurCam_df_processing(HouSenCurCam_df, silver_path):
     try:
         # Clean data
         HouSenCurCam_df = base_clean(HouSenCurCam_df)
@@ -223,7 +223,7 @@ def HouSenCurCam_df_processing(HouSenCurCam_df, processed_data_path):
         )
 
         # Save Data in processed Layer
-        write_df_to_parquet(HouSenCurCam_df, "HouSenCurCam_df", processed_data_path)
+        write_df_to_parquet(HouSenCurCam_df, "HouSenCurCam_df", silver_path)
 
         logger.info("HouSenCurCam_df processing completed successfully.")
 
@@ -234,7 +234,7 @@ def HouSenCurCam_df_processing(HouSenCurCam_df, processed_data_path):
         raise
 
 
-def OpEx_df_processing(OpEx_df, processed_data_path):
+def OpEx_df_processing(OpEx_df, silver_path):
     try:
         # Clean data
         OpEx_df = base_clean(OpEx_df)
@@ -247,7 +247,7 @@ def OpEx_df_processing(OpEx_df, processed_data_path):
         OpEx_df = opex_features.features_OpEx_df(OpEx_df)
 
         # Save Data in processed Layer
-        write_df_to_parquet(OpEx_df, "OpEx_df", processed_data_path)
+        write_df_to_parquet(OpEx_df, "OpEx_df", silver_path)
 
         logger.info("OpEx_df processing completed successfully.")
 
@@ -256,7 +256,7 @@ def OpEx_df_processing(OpEx_df, processed_data_path):
         raise
 
 
-def PacSum_df_processing(PacSum_df, processed_data_path):
+def PacSum_df_processing(PacSum_df, silver_path):
     try:
         # Clean data
         PacSum_df = base_clean(PacSum_df)
@@ -269,7 +269,7 @@ def PacSum_df_processing(PacSum_df, processed_data_path):
         PacSum_df = pacsum_features.features_PacSum_df(PacSum_df)
 
         # Save Data in processed Layer
-        write_df_to_parquet(PacSum_df, "PacSum_df", processed_data_path)
+        write_df_to_parquet(PacSum_df, "PacSum_df", silver_path)
 
         logger.info("PacSum_df processing completed successfully.")
 
@@ -280,7 +280,7 @@ def PacSum_df_processing(PacSum_df, processed_data_path):
         raise
 
 
-def CandMast_df_processing(CandMast_df, processed_data_path):
+def CandMast_df_processing(CandMast_df, silver_path):
     try:
         # Clean data
         CandMast_df = base_clean(CandMast_df)
@@ -293,7 +293,7 @@ def CandMast_df_processing(CandMast_df, processed_data_path):
         CandMast_df = candmast_features.features_CandMast_df(CandMast_df)
 
         # Save Data in processed Layer
-        write_df_to_parquet(CandMast_df, "CandMast_df", processed_data_path)
+        write_df_to_parquet(CandMast_df, "CandMast_df", silver_path)
 
         logger.info("CandMast_df processing completed successfully.")
     except Exception as e:
@@ -303,7 +303,7 @@ def CandMast_df_processing(CandMast_df, processed_data_path):
         raise
 
 
-def CommMast_df_processing(CommMast_df, processed_data_path):
+def CommMast_df_processing(CommMast_df, silver_path):
     try:
         # Clean data
         CommMast_df = base_clean(CommMast_df)
@@ -313,7 +313,7 @@ def CommMast_df_processing(CommMast_df, processed_data_path):
         CommMast_df = commmast_features.features_CommMast_df(CommMast_df)
 
         # Save Data in processed Layer
-        write_df_to_parquet(CommMast_df, "CommMast_df", processed_data_path)
+        write_df_to_parquet(CommMast_df, "CommMast_df", silver_path)
 
         logger.info("CommMast_df processing completed successfully.")
 
@@ -334,58 +334,58 @@ def run_processing_pipeline():
         config_yml = load_config("config/pipeline_config.yaml")
         spark = spark_session(config_yml, app_name="DataProcessing")
 
-        # Setting write data directory path
-        parq_dir_path = config_yml["parquet_data_path"]
+        # Setting read data directory path
+        bronze_path = config_yml["bronze_path"]
         # Setting processed data directory path
-        processed_data_path = config_yml["processed_data_path"]
+        silver_path = config_yml["silver_path"]
 
         # Read  from parquet
 
         # All candidates Data
-        AllCand_df = spark.read.parquet(parq_dir_path + "AllCand_df")
+        AllCand_df = spark.read.parquet(bronze_path + "AllCand_df")
 
         # Any transaction from one committee to another Data
-        TranOneComToAno_df = spark.read.parquet(parq_dir_path + "TranOneComToAno_df")
+        TranOneComToAno_df = spark.read.parquet(bronze_path + "TranOneComToAno_df")
 
         # Candidate-committee linkages
-        CanComLink_df = spark.read.parquet(parq_dir_path + "CanComLink_df")
+        CanComLink_df = spark.read.parquet(bronze_path + "CanComLink_df")
 
         # Contributions by individuals
-        ConByInd_df = spark.read.parquet(parq_dir_path + "ConByInd_df")
+        ConByInd_df = spark.read.parquet(bronze_path + "ConByInd_df")
 
         # Contributions from committees to candidates & independent expenditure
         ConFromComToCanIndExpen_df = spark.read.parquet(
-            parq_dir_path + "ConFromComToCanIndExpen_df"
+            bronze_path + "ConFromComToCanIndExpen_df"
         )
 
         # House Senate current campaigns
-        HouSenCurCam_df = spark.read.parquet(parq_dir_path + "HouSenCurCam_df")
+        HouSenCurCam_df = spark.read.parquet(bronze_path + "HouSenCurCam_df")
 
         # Operating expenditures
-        OpEx_df = spark.read.parquet(parq_dir_path + "OpEx_df")
+        OpEx_df = spark.read.parquet(bronze_path + "OpEx_df")
 
         # PAC summary
-        PacSum_df = spark.read.parquet(parq_dir_path + "PacSum_df")
+        PacSum_df = spark.read.parquet(bronze_path + "PacSum_df")
 
         # Candidate master
-        CandMast_df = spark.read.parquet(parq_dir_path + "CandMast_df")
+        CandMast_df = spark.read.parquet(bronze_path + "CandMast_df")
 
         # Commitee master
-        CommMast_df = spark.read.parquet(parq_dir_path + "CommMast_df")
+        CommMast_df = spark.read.parquet(bronze_path + "CommMast_df")
 
         # Process each DataFrame
-        AllCand_df_processing(AllCand_df, processed_data_path)
-        TranOneComToAno_df_processing(TranOneComToAno_df, processed_data_path)
-        CanComLink_df_processing(CanComLink_df, processed_data_path)
-        ConByInd_df_processing(ConByInd_df, processed_data_path)
+        AllCand_df_processing(AllCand_df, silver_path)
+        TranOneComToAno_df_processing(TranOneComToAno_df, silver_path)
+        CanComLink_df_processing(CanComLink_df, silver_path)
+        ConByInd_df_processing(ConByInd_df, silver_path)
         ConFromComToCanIndExpen_df_processing(
-            ConFromComToCanIndExpen_df, processed_data_path
+            ConFromComToCanIndExpen_df, silver_path
         )
-        HouSenCurCam_df_processing(HouSenCurCam_df, processed_data_path)
-        OpEx_df_processing(OpEx_df, processed_data_path)
-        PacSum_df_processing(PacSum_df, processed_data_path)
-        CandMast_df_processing(CandMast_df, processed_data_path)
-        CommMast_df_processing(CommMast_df, processed_data_path)
+        HouSenCurCam_df_processing(HouSenCurCam_df, silver_path)
+        OpEx_df_processing(OpEx_df, silver_path)
+        PacSum_df_processing(PacSum_df, silver_path)
+        CandMast_df_processing(CandMast_df, silver_path)
+        CommMast_df_processing(CommMast_df, silver_path)
 
         logger.info("Ingestion pipeline completed successfully.")
     except Exception as e:

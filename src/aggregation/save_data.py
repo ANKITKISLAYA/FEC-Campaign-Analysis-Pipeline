@@ -2,7 +2,7 @@ from src.utils.logger import setup_logger
 
 logger = setup_logger("save_data", "logs/aggregation.log")
 
-def write_df_to_parquet(df, file_name, base_path="gs://dataproc-staging-us-central1-784600309852-sdhxiysx/notebooks/jupyter/FEC Project/data/aggregated/2019-2020"):
+def write_df_to_parquet(df, file_name, base_path="gs://dataproc-staging-us-central1-40371648517-ndvgfbwp/notebooks/jupyter/FEC-Campaign-Analysis/FEC-Data/gold"):
     """
     Writes a Spark DataFrame to the specified GCS path in Parquet format.
 
