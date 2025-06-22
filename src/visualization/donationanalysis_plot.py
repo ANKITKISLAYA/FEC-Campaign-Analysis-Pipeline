@@ -27,7 +27,7 @@ def donation_by_state_plot(AggDonByState_df):
         sns.barplot(
             data=AggDonByState_pdf,
             x="state_name",
-            y="total_donations_million",
+            y="total_donation_in_million",
             palette="viridis",
         )
 
@@ -67,7 +67,7 @@ def total_donations_by_state_plot(AggDonByState_df):
         sns.barplot(
             data=AggDonByState_pdf,
             x="state_name",
-            y="total_donations_million",
+            y="total_donation_in_million",
             palette="viridis",
         )
 
@@ -148,9 +148,9 @@ def percentage_donation_by_state_plot(AggDonByState_df):
         AggDonByState_pdf.head(10)
 
         # Calculate percentage of total donations
-        total_donations = AggDonByState_pdf["total_donations_million"].sum()
+        total_donations = AggDonByState_pdf["total_donation_in_million"].sum()
         AggDonByState_pdf["percentage"] = (
-            AggDonByState_pdf["total_donations_million"] / total_donations
+            AggDonByState_pdf["total_donation_in_million"] / total_donations
         ) * 100
 
         # Plot
