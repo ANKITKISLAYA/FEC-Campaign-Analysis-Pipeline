@@ -26,7 +26,7 @@ def donation_by_state_plot(AggDonByState_df):
         plt.figure(figsize=(12, 6))
         sns.barplot(
             data=AggDonByState_pdf,
-            x="state",
+            x="state_name",
             y="total_donations_million",
             palette="viridis",
         )
