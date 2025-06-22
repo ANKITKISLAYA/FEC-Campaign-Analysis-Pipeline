@@ -83,7 +83,7 @@ def AllCand_df_processing(AllCand_df, silver_path):
 def TranOneComToAno_df_processing(TranOneComToAno_df, silver_path):
     try:
         # Clean data
-        TranOneComToAno_df = base_clean(TranOneComToAno_df)
+        TranOneComToAno_df = base_clean.base_clean(TranOneComToAno_df)
         TranOneComToAno_df = tranonecomtoano_clean.clean_TranOneComToAno_df(
             TranOneComToAno_df
         )
@@ -117,7 +117,7 @@ def CanComLink_df_processing(CanComLink_df, silver_path):
 
     try:
         # Clean data
-        CanComLink_df = base_clean(CanComLink_df)
+        CanComLink_df = base_clean.base_clean(CanComLink_df)
         CanComLink_df = cancomlink_clean.clean_CanComLink_df(CanComLink_df)
 
         # Type cast
@@ -141,7 +141,7 @@ def CanComLink_df_processing(CanComLink_df, silver_path):
 def ConByInd_df_processing(ConByInd_df, silver_path):
     try:
         # Clean data
-        ConByInd_df = base_clean(ConByInd_df)
+        ConByInd_df = base_clean.base_clean(ConByInd_df)
         ConByInd_df = conbyind_clean.clean_ConByInd_df(ConByInd_df)
 
         # Type cast
@@ -167,7 +167,7 @@ def ConFromComToCanIndExpen_df_processing(
 ):
     try:
         # Clean data
-        ConFromComToCanIndExpen_df = base_clean(ConFromComToCanIndExpen_df)
+        ConFromComToCanIndExpen_df = base_clean.base_clean(ConFromComToCanIndExpen_df)
 
         ConFromComToCanIndExpen_df = (
             confromcomtocanindexpen_clean.clean_ConFromComToCanIndExpen_df(
@@ -209,7 +209,7 @@ def ConFromComToCanIndExpen_df_processing(
 def HouSenCurCam_df_processing(HouSenCurCam_df, silver_path):
     try:
         # Clean data
-        HouSenCurCam_df = base_clean(HouSenCurCam_df)
+        HouSenCurCam_df = base_clean.base_clean(HouSenCurCam_df)
         HouSenCurCam_df = housencurcam_clean.clean_HouSenCurCam_df(HouSenCurCam_df)
 
         # Type cast
@@ -237,7 +237,7 @@ def HouSenCurCam_df_processing(HouSenCurCam_df, silver_path):
 def OpEx_df_processing(OpEx_df, silver_path):
     try:
         # Clean data
-        OpEx_df = base_clean(OpEx_df)
+        OpEx_df = base_clean.base_clean(OpEx_df)
         OpEx_df = opex_clean.clean_OpEx_df(OpEx_df)
 
         # Type cast
@@ -259,7 +259,7 @@ def OpEx_df_processing(OpEx_df, silver_path):
 def PacSum_df_processing(PacSum_df, silver_path):
     try:
         # Clean data
-        PacSum_df = base_clean(PacSum_df)
+        PacSum_df = base_clean.base_clean(PacSum_df)
         PacSum_df = pacsum_clean.clean_PacSum_df(PacSum_df)
 
         # Type cast
@@ -283,7 +283,7 @@ def PacSum_df_processing(PacSum_df, silver_path):
 def CandMast_df_processing(CandMast_df, silver_path):
     try:
         # Clean data
-        CandMast_df = base_clean(CandMast_df)
+        CandMast_df = base_clean.base_clean(CandMast_df)
         CandMast_df = candmast_clean.clean_CandMast_df(CandMast_df)
 
         # Type cast
@@ -306,7 +306,7 @@ def CandMast_df_processing(CandMast_df, silver_path):
 def CommMast_df_processing(CommMast_df, silver_path):
     try:
         # Clean data
-        CommMast_df = base_clean(CommMast_df)
+        CommMast_df = base_clean.base_clean(CommMast_df)
         CommMast_df = commmast_clean.clean_CommMast_df(CommMast_df)
 
         # Feature Engineering
