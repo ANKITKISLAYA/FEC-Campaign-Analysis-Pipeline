@@ -48,7 +48,7 @@ logger = setup_logger("processing_run", "logs/processing.log")
 def AllCand_df_processing(AllCand_df, silver_path):
     try:
         # Clean data
-        AllCand_df = base_clean(AllCand_df)
+        AllCand_df = base_clean.base_clean(AllCand_df)
         AllCand_df = allcand_clean.clean_AllCand_df(AllCand_df)
 
         # Type cast
