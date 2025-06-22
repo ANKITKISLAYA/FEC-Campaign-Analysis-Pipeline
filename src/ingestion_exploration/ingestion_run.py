@@ -397,10 +397,10 @@ def CommMast_df_pipeline(spark, config_yml, bronze_path):
     """
     try:
         # Read table into DataFrame
-        df_Committee_master = read_table_to_df("Committee_master", config_yml)
+        df_Commitee_master = read_table_to_df("Commitee_master", config_yml)
 
         # Convert pandas df to spark df
-        CommMast_df = spark.createDataFrame(df_Committee_master)
+        CommMast_df = spark.createDataFrame(df_Commitee_master)
 
         # Save Data
         save_to_parquet(CommMast_df, bronze_path, "CommMast_df")
