@@ -99,9 +99,7 @@ def TranOneComToAno_df_processing(TranOneComToAno_df, silver_path):
         )
 
         # Save Data in processed Layer
-        write_df_to_parquet(
-            TranOneComToAno_df, "TranOneComToAno_df", silver_path
-        )
+        write_df_to_parquet(TranOneComToAno_df, "TranOneComToAno_df", silver_path)
 
         logger.info("TranOneComToAno_df processing completed successfully.")
 
@@ -162,9 +160,7 @@ def ConByInd_df_processing(ConByInd_df, silver_path):
         raise
 
 
-def ConFromComToCanIndExpen_df_processing(
-    ConFromComToCanIndExpen_df, silver_path
-):
+def ConFromComToCanIndExpen_df_processing(ConFromComToCanIndExpen_df, silver_path):
     try:
         # Clean data
         ConFromComToCanIndExpen_df = base_clean.base_clean(ConFromComToCanIndExpen_df)
@@ -378,21 +374,27 @@ def run_processing_pipeline():
         TranOneComToAno_df_processing(TranOneComToAno_df, silver_path)
         CanComLink_df_processing(CanComLink_df, silver_path)
         ConByInd_df_processing(ConByInd_df, silver_path)
-        ConFromComToCanIndExpen_df_processing(
-            ConFromComToCanIndExpen_df, silver_path
-        )
+        ConFromComToCanIndExpen_df_processing(ConFromComToCanIndExpen_df, silver_path)
         HouSenCurCam_df_processing(HouSenCurCam_df, silver_path)
         OpEx_df_processing(OpEx_df, silver_path)
         PacSum_df_processing(PacSum_df, silver_path)
         CandMast_df_processing(CandMast_df, silver_path)
         CommMast_df_processing(CommMast_df, silver_path)
 
-        logger.info("Ingestion pipeline completed successfully.")
+        logger.info("Processing pipeline completed successfully.")
     except Exception as e:
         logger.error(
-            f"An error occurred during the ingestion pipeline: {e}", exc_info=True
+            f"An error occurred during the processing pipeline: {e}", exc_info=True
         )
         raise
+    finally:
+        try:
+            # Stop the Spark session
+            spark.stop()
+            logger.info("Spark session stopped successfully.")
+        except Exception as e:
+            logger.error(f"Error stopping Spark session: {e}")
+            raise
 
 
 if __name__ == "__main__":
