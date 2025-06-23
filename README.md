@@ -99,6 +99,9 @@ FEC-Campaign-Analysis-Pipeline/
 │       ├── logger.py
 │       └── spark_session.py
 
+├── tests/
+│   └── test_bronze_schema.py              # Unit tests for bronze schema validations
+
 └── README.md                              # Documentation on setup and usage
 
 ```
