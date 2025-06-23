@@ -104,6 +104,10 @@ def donor_analysis(ConByInd_df):
 
 
 def run_aggregation_pipeline():
+    """
+    Main function to run the aggregation pipeline.
+    """
+    logger.info("Starting aggregation pipeline...")
     try:
         # Load configuration and create Spark session
         config_yml = load_config("config/pipeline_config.yaml")

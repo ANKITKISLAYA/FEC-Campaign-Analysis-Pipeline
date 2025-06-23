@@ -27,7 +27,10 @@ logger = setup_logger("visualization_run", "logs/visualization.log")
 
 def run_visualization():
     try:
-
+        """
+        Main function to run the visualization pipeline.
+        """
+        logger.info('Starting visualization pipeline...')
         # Load configuration and create Spark session
         config_yml = load_config("config/pipeline_config.yaml")
         spark = spark_session(config_yml, app_name="DataVisualization")
