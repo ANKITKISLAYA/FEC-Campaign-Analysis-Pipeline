@@ -5,6 +5,10 @@ def setup_logger(name, log_file, level=logging.DEBUG):
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
+    # Check if the logger already has handlers to avoid duplicate logs
+    if logger.hasHandlers():
+        logger.handlers.clear()
+
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     # File handler

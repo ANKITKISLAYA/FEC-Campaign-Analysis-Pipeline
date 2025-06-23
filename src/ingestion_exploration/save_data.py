@@ -1,6 +1,6 @@
 from src.utils.logger import setup_logger
 
-logger = setup_logger("save_data", "logs/ingestion.log")
+logger = setup_logger("ingestion_save_data", "logs/ingestion.log")
 
 
 def save_to_parquet(df, output_path, df_name):
