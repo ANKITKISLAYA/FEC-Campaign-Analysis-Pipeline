@@ -72,7 +72,9 @@ EXPECTED_SCHEMAS = {
 
 @pytest.fixture(scope="session")
 def spark():
-    return SparkSession.builder.appName("TestBronzeSchemas").getOrCreate()
+    spark = SparkSession.builder.appName("TestBronzeSchemas").getOrCreate()
+    yield spark
+    spark.stop() # after yield, stop the Spark session
 
 @pytest.mark.parametrize("file_name,expected_columns", EXPECTED_SCHEMAS.items())
 def test_bronze_schema(spark, file_name, expected_columns):
