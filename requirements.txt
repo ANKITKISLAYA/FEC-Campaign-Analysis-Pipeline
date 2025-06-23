@@ -139,3 +139,4 @@ websocket-client @ file:///C:/b/abs_5dmnxxoci9/croot/websocket-client_1715878351
 wheel==0.45.1
 win-inet-pton @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/win_inet_pton_1699472992992/work
 yarl==1.20.0
+pytest
