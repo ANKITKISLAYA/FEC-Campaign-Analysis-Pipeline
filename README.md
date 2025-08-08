@@ -8,6 +8,11 @@ A modular, Spark-based data engineering pipeline to analyze campaign finance dat
 
 <img width="1134" height="600" alt="FEC Campaign Analysis Pipeline" src="https://github.com/user-attachments/assets/e3b196b4-69f5-4ebb-8b02-ead6452ab777" />
 
+## ER Diagram
+
+<img width="1494" height="648" alt="CanComFEC_ERDiag" src="https://github.com/user-attachments/assets/df60b89b-ddfa-45ba-84e4-88514b034943" />
+
+
 ## Project Structure
 
 ```
