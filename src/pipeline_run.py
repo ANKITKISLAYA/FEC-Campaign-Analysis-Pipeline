@@ -27,7 +27,7 @@ def run_full_pipeline():
         logger.info("Running visualization phase...")
         run_visualization()
 
-        logger.info("✅ Full pipeline executed successfully!")
+        logger.info("Full pipeline executed successfully!")
 
     except Exception as e:
         logger.error(f"Pipeline failed: {e}")
